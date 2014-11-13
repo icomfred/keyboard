@@ -1,0 +1,99 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyscreen.js                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+@charset 'UTF-8';
+
+body {
+}
+
+:root {
+  &, body, program {
+    position: absolute;
+    display: block;
+    width: 500px;
+    height: 420px;
+    padding: 0px;
+    margin: 0px;
+  }
+  program {
+    keyboard {
+      position: relative;
+      display: inline-block;
+      background-color: rgb(0, 55, 69);
+      color: rgb(122, 152, 153);
+      overflow-wrap: break-word;
+      width: -webkit-calc(~'70% - 5px');
+      height: -webkit-calc(~'100% - 5px');
+      padding: 2.5px;
+      select[id='alphabet'] {
+        position: relative;
+        display: block;
+        width: -webkit-calc(~'100% - 5px');
+        height: -webkit-calc(~'10% - 5px');
+        margin: 2.5px;
+        border: none;
+      }
+      letters {
+        position: relative;
+        display: block;
+        width: -webkit-calc(~'100% - 5px');
+        height: -webkit-calc(~'90% - 5px');
+        margin: 2.5px;
+        letter {
+          margin: 5px;
+        }
+      }
+    }
+    dictionary {
+      position: absolute;
+      display: inline-block;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      width: -webkit-calc(~'30% - 5px');
+      height: -webkit-calc(~'100% - 5px');
+      padding: 2.5px;
+      search {
+        position: relative;
+        display: -webkit-box;
+        width: -webkit-calc(~'100% - 5px');
+        height: -webkit-calc(~'10% - 5px');
+        margin: 2.5px;
+        -webkit-box-align: center;
+      }
+      items {
+        position: relative;
+        display: block;
+        width: -webkit-calc(~'100% - 5px');
+        height: -webkit-calc(~'90% - 5px');
+        margin: 2.5px;
+        item {
+          display: block;
+          position: relative;
+          word {
+            position: relative;
+            display: inline-block;
+            width: -webkit-calc(~'80% - 5px');
+            margin: 2.5px;
+          }
+          delete {
+            color: red;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: -webkit-calc(~'20% - 5px');
+            margin: 2.5px;
+          }
+        }
+      }
+    }
+  }
+}

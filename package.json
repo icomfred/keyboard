@@ -1,0 +1,48 @@
+{
+  "main": "keyscreen.html",
+  "name": "keyscreen",
+  "description": "beta program of virtual keyboard",
+  "version": "0.0.1",
+  "configuration": {
+    "style": "./default/",
+    "alphabet": {
+      "files":  "english.json, french.json, latin.json",
+      "file": "default.json",
+      "letter": "a"
+    },
+    "dictionary": {
+      "file": "default.json",
+      "search": "firsts",
+      "limit": 15
+    },
+    "lang": {
+      "locales": [
+        "en",
+        "ja",
+        "fr"
+      ],
+      "path": "./app/lang/",
+      "locale": "en"
+    },
+    "debug": true
+  },
+  "keywords": [
+    "special access system",
+    "scanning mechanisms",
+    "adaptation",
+    "virtual keyboard"
+  ],
+  "window": {
+    "position": "center",
+    "always-on-top": true,
+    "frameless": false,
+    "toolbar": false,
+    "frame": false,
+    "show": true,
+    "width": 500,
+    "height": 420,
+    "min_width": 500,
+    "min_height": 420,
+    "transparent": true
+  }
+}
