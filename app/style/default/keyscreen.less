@@ -12,9 +12,6 @@
 
 @charset 'UTF-8';
 
-body {
-}
-
 :root {
   &, body, program {
     position: absolute;
@@ -36,6 +33,7 @@ body {
       padding: 2.5px;
       select[id='alphabet'] {
         position: relative;
+        text-transform: capitalize;
         display: block;
         width: -webkit-calc(~'100% - 5px');
         height: -webkit-calc(~'10% - 5px');

@@ -26,6 +26,7 @@ Object.prototype.max = function (before) {
 };
 
 Object.prototype.sort = function (arg) {
+  console.log('call', typeof arg);
   var items = Object.keys(this);
   var limit = items.length;
   var max   = this.max();
@@ -38,6 +39,27 @@ Object.prototype.sort = function (arg) {
       if (max == this[items[count]])
         sort.push(items[count]);
     max = this.max(max);
+  }
+  return (sort);
+};
+
+var sort = function (arg) {
+  console.log('1');
+  console.log(typeof arg);
+  var items = Object.keys(arg);
+  console.log('2');
+  var limit = items.length;
+  console.log('3');
+  var max   = arg.max();
+  var sort  = [];
+  var count;
+
+  while (sort.length < limit) {
+    count = -1;
+    while (++count < limit)
+      if (max == arg[items[count]])
+        sort.push(items[count]);
+    max = arg.max(max);
   }
   return (sort);
 };
@@ -57,7 +79,7 @@ var Search = {
     node.textContent += letter;
     Dictionary.put(node.textContent);
   },
-  'default': window.addEventListener('click', function(arg) {
+  'default': window.addEventListener('click', function (arg) {
     var node = arg.toElement;
     var name = node.tagName.toLowerCase();
     var word;

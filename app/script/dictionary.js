@@ -75,7 +75,7 @@ var Dictionary = {
           return (false);
     return (true);
   },
-  'default': window.addEventListener('load', function() {
+  'default': window.addEventListener('load', function (arg) {
     var address = Dictionary.root + Conf.dictionary.file;
 
     File.read(address).then(function(res, err) {

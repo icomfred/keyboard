@@ -54,11 +54,11 @@ var Keyboard = {
     Keyboard.put(Keyboard.json[letter]);
     Search.put(letter);
   },
-  'default': window.addEventListener('load', function() {
-    var address = Keyboard.root + Conf.alphabet.file;
+  'default': window.addEventListener('load', function (arg) {
+    var address = Keyboard.root + Conf.lang.locale + '/' + Conf.alphabet.file;
     var letter  = Keyboard.letter;
 
-    File.read(address).then(function(res, err) {
+    File.read(address).then(function (res, err) {
       if (!err) {
         Keyboard.json = JSON.parse(res);
         Keyboard.put(Keyboard.json[letter]);

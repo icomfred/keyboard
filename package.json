@@ -6,8 +6,11 @@
   "configuration": {
     "style": "./default/",
     "alphabet": {
-      "files":  "english.json, french.json, latin.json",
-      "file": "default.json",
+      "files": [
+        "literature.json",
+        "math.json"
+      ],
+      "file": "literature.json",
       "letter": "a"
     },
     "dictionary": {

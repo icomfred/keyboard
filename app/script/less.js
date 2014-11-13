@@ -27,9 +27,9 @@ var Style = {
     var address = arg.address;
     var node = arg.node;
 
-    File.read(address).then(function(res, err) {
+    File.read(address).then(function (res, err) {
       less.render(res, function (e, css) {
-        node.textContent = css;
+        node.textContent = css.css;
       });
     });
   },
@@ -46,7 +46,7 @@ var Style = {
       'node': link
     })
   },
-  'default': window.addEventListener('load', function() {
+  'default': window.addEventListener('load', function (arg) {
     Style.append(Style.theme + document.title + '.less');
   }, false)
 };
