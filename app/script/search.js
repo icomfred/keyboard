@@ -25,52 +25,29 @@ Object.prototype.max = function (before) {
   return (max);
 };
 
-Object.prototype.sort = function (arg) {
-  console.log('call', typeof arg);
-  var items = Object.keys(this);
-  var limit = items.length;
-  var max   = this.max();
-  var sort  = [];
-  var count;
-
-  while (sort.length < limit) {
-    count = -1;
-    while (++count < limit)
-      if (max == this[items[count]])
-        sort.push(items[count]);
-    max = this.max(max);
-  }
-  return (sort);
-};
-
-var sort = function (arg) {
-  console.log('1');
-  console.log(typeof arg);
-  var items = Object.keys(arg);
-  console.log('2');
-  var limit = items.length;
-  console.log('3');
-  var max   = arg.max();
-  var sort  = [];
-  var count;
-
-  while (sort.length < limit) {
-    count = -1;
-    while (++count < limit)
-      if (max == arg[items[count]])
-        sort.push(items[count]);
-    max = arg.max(max);
-  }
-  return (sort);
-};
-
 var Search = {
   'node': 'search',
 
+  'sort': function (arg) {
+    var items = Object.keys(arg);
+    var limit = items.length;
+    var max   = arg.max();
+    var sort  = [];
+    var count;
+
+    while (sort.length < limit) {
+      count = -1;
+      while (++count < limit)
+        if (max == arg[items[count]])
+          sort.push(items[count]);
+      max = arg.max(max);
+    }
+    return (sort);
+  },
   'clear': function (arg) {
     var node = document.querySelector(Search.node);
 
-    Dictionary.sort = Dictionary.json.sort();
+    Dictionary.sort = Search.sort(Dictionary.json);
     node.textContent = '';
   },
   'put': function (letter) {

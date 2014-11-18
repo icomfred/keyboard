@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word.js                                            :+:      :+:    :+:   */
+/*   lang.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,28 +12,34 @@
 
 'use strict';
 
-/*
-** The Word's Class is calls by Dictionary's class for
-** adds a word's button at a item.
-*/
+var Lang = {
+  'id': 'lang',
+  'tag': 'option',
+  'locales': Conf.lang.locales,
+  'locale': Conf.lang.locale,
 
-var Word = {
-  'tag': 'text',
-  'text': String.fromCharCode(10005),
+  'put': function (node) {
+  	var count = -1;
+  	var locales = Lang.locales;
+  	var locale  = Lang.locale;
+    var tag;
 
-  'put': function (text) {
-    var tag = document.createElement(Word.tag);
-
-    tag.addEventListener('click', Word.event, false);
-    tag.textContent = text;
-    return (tag);
+  	while (locales[++count]) {
+      tag = document.createElement(Alphabet.tag);
+      tag.textContent = locales[count];
+      tag.setAttribute('value', locales[count]);
+      if (locales[count] == locale)
+        tag.setAttribute('checked', 'checked');
+      node.appendChild(tag);
+    }
   },
-  'event': function (node) {
-    var word = node.toElement.textContent;
+  'event': function (arg) {
+  	console.log('lang event');
+  },
+  'init': function (arg) {
+    var node = document.getElementById(Lang.id);
 
-    console.log('word', word);
-    Dictionary.json[word] += 1;
-    Search.clear();
-    Dictionary.clear();
+    Lang.put(node);
+    node.addEventListener('change', Lang.event);
   }
-}
+};

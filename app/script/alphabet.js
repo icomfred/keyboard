@@ -12,9 +12,6 @@
 
 'use strict';
 
-/*
-** The Debug's class is auto call for loads the file's alphabet select.
-*/
 
 var Alphabet = {
   'id': 'alphabet',
@@ -35,7 +32,7 @@ var Alphabet = {
       if (files[count] == file)
         tag.setAttribute('checked', 'checked');
       node.appendChild(tag);
-  	}
+    }
   },
   'event': function (arg) {
     var node    = document.getElementById(Alphabet.id);

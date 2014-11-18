@@ -33,7 +33,7 @@ var Keyboard = {
   },
   'put': function (json) {
     var node  = Keyboard.clear();
-    var sort  = json.sort();
+    var sort  = Search.sort(json);
     var count = -1;
     var tag;
 

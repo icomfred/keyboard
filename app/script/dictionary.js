@@ -21,8 +21,7 @@ var Dictionary = {
   'node': 'items',
   'tag': 'item',
   'root': './app/dictionary/',
-  'search': Conf.dictionary.search,
-  'limit': Conf.dictionary.limit,
+  'limit': Conf.search.limit,
   'json': undefined,
   'sort': undefined,
 
@@ -34,7 +33,7 @@ var Dictionary = {
     return (node);
   },
   'put': function (letters) {
-    var search = Dictionary[Dictionary.search];
+    var search = Dictionary[Conf.search.mode];
     var words  = Dictionary.sort;
     var limit  = Dictionary.limit;
     var node   = Dictionary.clear();
@@ -76,12 +75,12 @@ var Dictionary = {
     return (true);
   },
   'default': window.addEventListener('load', function (arg) {
-    var address = Dictionary.root + Conf.dictionary.file;
+    var address = Dictionary.root + 'default.json';
 
     File.read(address).then(function(res, err) {
       if (!err) {
         Dictionary.json = JSON.parse(res);
-        Dictionary.sort = Dictionary.json.sort();
+        Dictionary.sort = Search.sort(Dictionary.json);
       }
     });
   }, false)

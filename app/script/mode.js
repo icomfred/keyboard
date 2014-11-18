@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word.js                                            :+:      :+:    :+:   */
+/*   mode.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,28 +12,34 @@
 
 'use strict';
 
-/*
-** The Word's Class is calls by Dictionary's class for
-** adds a word's button at a item.
-*/
+var Mode = {
+  'id': 'mode',
+  'tag': 'option',
+  'modes': Conf.search.modes,
+  'mode': Conf.search.mode,
 
-var Word = {
-  'tag': 'text',
-  'text': String.fromCharCode(10005),
+  'put': function (node) {
+  	var count = -1;
+  	var modes = Mode.modes;
+  	var mode  = Mode.mode;
+    var tag;
 
-  'put': function (text) {
-    var tag = document.createElement(Word.tag);
-
-    tag.addEventListener('click', Word.event, false);
-    tag.textContent = text;
-    return (tag);
+  	while (modes[++count]) {
+      tag = document.createElement(Alphabet.tag);
+      tag.textContent = modes[count];
+      tag.setAttribute('value', modes[count]);
+      if (modes[count] == mode)
+        tag.setAttribute('checked', 'checked');
+      node.appendChild(tag);
+    }
   },
   'event': function (node) {
-    var word = node.toElement.textContent;
+    Conf.search.mode = node.srcElement.value;
+  },
+  'init': function (arg) {
+    var node = document.getElementById(Mode.id);
 
-    console.log('word', word);
-    Dictionary.json[word] += 1;
-    Search.clear();
-    Dictionary.clear();
+    Mode.put(node);
+    node.addEventListener('change', Mode.event);
   }
-}
+};
