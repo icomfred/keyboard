@@ -35,8 +35,6 @@ var Body = {
   },
   'default': window.addEventListener('load', function(arg) {
     Body.inner(document.title + '.jade');
-    Alphabet.init();
-    Mode.init();
-    Lang.init();
+    Lang.event();
   }, false)
 };

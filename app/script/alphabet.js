@@ -28,21 +28,22 @@ var Alphabet = {
   	while (files[++count]) {
       tag = document.createElement(Alphabet.tag);
       tag.textContent = files[count].replace(/\.[^/.]+$/, '');
+      tag.textContent = Lang.translate(tag.textContent, {});
       tag.setAttribute('value', files[count]);
       if (files[count] == file)
-        tag.setAttribute('checked', 'checked');
+        tag.setAttribute('selected', 'selected');
       node.appendChild(tag);
     }
   },
   'event': function (arg) {
     var node    = document.getElementById(Alphabet.id);
-    var value   = node.value ? node.value : Conf.alphabet.file;
+    var value   = node.value;
     var address = Keyboard.root + Conf.lang.locale + '/' + value;
     var letter  = Keyboard.letter;
 
-    console.log(address);
+    Conf.alphabet.file = value;
+    Alphabet.file = value;
     File.read(address).then(function (res, err) {
-      console.log(err);
       if (!err) {
         Keyboard.json = JSON.parse(res);
         Keyboard.put(Keyboard.json[letter]);
@@ -52,6 +53,8 @@ var Alphabet = {
   'init': function (arg) {
     var node = document.getElementById(Alphabet.id);
 
+    while (node.firstChild)
+      node.removeChild(node.firstChild);
     Alphabet.put(node);
     node.addEventListener('change', Alphabet.event);
   }

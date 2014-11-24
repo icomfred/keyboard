@@ -19,13 +19,11 @@
 
 var Delete = {
   'tag': 'delete',
-  'text': String.fromCharCode(10005),
 
   'put': function (arg) {
     var tag = document.createElement(Delete.tag);
 
     tag.addEventListener('click', Delete.event, false);
-    tag.textContent = Delete.text;
     return (tag);
   },
   'event': function (node) {

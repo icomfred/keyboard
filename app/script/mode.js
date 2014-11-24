@@ -27,18 +27,25 @@ var Mode = {
   	while (modes[++count]) {
       tag = document.createElement(Alphabet.tag);
       tag.textContent = modes[count];
+      tag.textContent = Lang.translate(tag.textContent, {});
       tag.setAttribute('value', modes[count]);
       if (modes[count] == mode)
-        tag.setAttribute('checked', 'checked');
+        tag.setAttribute('selected', 'selected');
       node.appendChild(tag);
     }
   },
   'event': function (node) {
-    Conf.search.mode = node.srcElement.value;
+    var node = document.getElementById(Mode.id);
+    var mode = node.value;
+
+    Conf.search.mode = mode;
+    Mode.mode = mode;
   },
   'init': function (arg) {
     var node = document.getElementById(Mode.id);
 
+    while (node.firstChild)
+      node.removeChild(node.firstChild);
     Mode.put(node);
     node.addEventListener('change', Mode.event);
   }

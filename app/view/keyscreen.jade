@@ -12,11 +12,12 @@
 
 program
   keyboard
-    select#lang
-    select#alphabet
-    select#mode
+    menu
+      select#lang
+      select#alphabet
+      select#mode
     letters
   dictionary
     search
-    clear
+    clear(disabled)
     items

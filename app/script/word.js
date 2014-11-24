@@ -19,7 +19,6 @@
 
 var Word = {
   'tag': 'text',
-  'text': String.fromCharCode(10005),
 
   'put': function (text) {
     var tag = document.createElement(Word.tag);

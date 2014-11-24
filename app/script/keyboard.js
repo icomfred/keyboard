@@ -53,6 +53,7 @@ var Keyboard = {
     Keyboard.letter = letter;
     Keyboard.put(Keyboard.json[letter]);
     Search.put(letter);
+    Reload.start();
   },
   'default': window.addEventListener('load', function (arg) {
     var address = Keyboard.root + Conf.lang.locale + '/' + Conf.alphabet.file;
