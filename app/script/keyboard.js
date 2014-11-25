@@ -20,6 +20,7 @@
 var Keyboard = {
   'node': 'letters',
   'tag': 'letter',
+  'tag2': 'text',
   'root': './app/alphabet/',
   'json': undefined,
   'letter': Conf.alphabet.letter,
@@ -36,13 +37,16 @@ var Keyboard = {
     var sort  = Search.sort(json);
     var count = -1;
     var tag;
+    var tag2;
 
     while (node.firstChild)
       node.removeChild(node.firstChild);
     while (sort[++count]) {
+      tag2 = document.createElement(Keyboard.tag2);
+      tag2.textContent = sort[count];
+      tag2.addEventListener('click', Keyboard.event, false);
       tag = document.createElement(Keyboard.tag);
-      tag.textContent = sort[count];
-      tag.addEventListener('click', Keyboard.event, false);
+      tag.appendChild(tag2);
       node.appendChild(tag);
     }
   },

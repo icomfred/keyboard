@@ -55,15 +55,41 @@
         height: -webkit-calc(~'90% - 5px');
         margin: 2.5px;
         letter {
-          background-color: white;
+          background-color: transparent;
           position: absolute;
-          width: 100px;
-          height: 100px;
-          left: -webkit-calc(~'50% - 100px / 2');
-          top: -webkit-calc(~'50% - 100px / 2');
+          text-align: center;
           border-radius: 100%;
-          border-color: white;
           border-style: solid;
+          @circles: 1, 2, 2, 5, 5, 10, 10, 20, 20, 40, 40, 80;
+          .cercle(@iterator: 1, @_size: 1) when(@iterator <= length(@circles)) {
+            @from: extract(@circles, @iterator);
+            @to: extract(@circles, @iterator + 1);
+            @difference: @to - @from;
+            &:nth-child(n+@{from}):nth-child(-n+@{to}) {
+              @size: (30px * @_size);
+              color: yellow;
+              width: @size;
+              height: @size;
+              left: -webkit-calc(~'50% - @{size} / 2');
+              top: -webkit-calc(~'50% - @{size} / 2');
+            }
+            .text(@_iterator: 1) when(@_iterator <= @difference) {
+              @letter: @from + @_iterator;
+              @degret: 360 / @difference * @_iterator;
+              &:nth-child(@{letter}n) {
+                -webkit-transform: rotate(~'@{degret}deg');
+              }
+              &:nth-child(@{letter}n) text {
+                @_degret: 360 - @degret;
+                -webkit-transform: rotate(~'@{_degret}deg');
+              }
+              .text((@_iterator + 1));
+            }.text();
+            .cercle((@iterator + 2), (@_size + 2));
+          }.cercle();
+          text {
+            position: absolute;
+          }
         }
       }
     }
