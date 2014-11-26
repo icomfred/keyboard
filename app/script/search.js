@@ -68,7 +68,7 @@ var Search = {
           Dictionary.json[word] = 1;
         else
           Dictionary.json[word] += 1;
-        console.log('word', word);
+        Door.send({'class': 'keyboard', 'method': 'shell'}, {'key': word});
         Search.clear();
         Dictionary.clear();
       }

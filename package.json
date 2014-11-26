@@ -5,6 +5,14 @@
   "version": "0.0.1",
   "configuration": {
     "style": "./default/",
+    "socket": {
+      "ip": "127.0.0.1",
+      "port": 1964,
+      "buffer": 200
+    },
+    "python": {
+      "path": null
+    },
     "search": {
       "modes": [
         "firsts",

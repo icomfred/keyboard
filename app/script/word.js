@@ -30,7 +30,7 @@ var Word = {
   'event': function (node) {
     var word = node.toElement.textContent;
 
-    console.log('word', word);
+    Door.send({'class': 'keyboard', 'method': 'shell'}, {'key': word});
     Dictionary.json[word] += 1;
     Search.clear();
     Dictionary.clear();

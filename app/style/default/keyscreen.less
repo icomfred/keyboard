@@ -12,6 +12,13 @@
 
 @charset 'UTF-8';
 
+@circles: 1, 2,
+          2, 5,
+          5, 16,
+          16, 43,
+          43, 81,
+          81, 124;
+
 :root {
   &, body, program {
     position: absolute;
@@ -22,11 +29,10 @@
     margin: 0px;
   }
   program {
+    background-color: rgb(10, 18, 84);
     keyboard {
       position: relative;
       display: inline-block;
-      background-color: rgb(0, 55, 69);
-      color: rgb(122, 152, 153);
       overflow-wrap: break-word;
       width: -webkit-calc(~'70% - 5px');
       height: -webkit-calc(~'100% - 5px');
@@ -35,10 +41,11 @@
         position: relative;
         display: inline-block;
         width: 100%;
-        height: -webkit-calc(~'10% - 5px');
+        height: -webkit-calc(~'10%');
         margin: 0px;
         padding: 0px;
         select {
+          background-color: rgb(41, 79, 255);
           position: relative;
           display: inline-block;
           width: -webkit-calc(~'33.3% - 5px');
@@ -48,26 +55,30 @@
         }
       }
       letters {
-        background-color: blue;
         position: relative;
         display: block;
-        width: -webkit-calc(~'100% - 5px');
-        height: -webkit-calc(~'90% - 5px');
-        margin: 2.5px;
+        width: -webkit-calc(~'100% - 6px');
+        height: -webkit-calc(~'90% - 6px - 28px');
+        background-color: rgba(41, 110, 248, .25);
+        border-radius: 100%;
+        border-style: solid;
+        border-color: transparent;
+        border-width: 3px;
+        margin-top: -webkit-calc(~'5% - 3px');
+        margin-bottom: -webkit-calc(~'5% - 3px');
         letter {
-          background-color: transparent;
           position: absolute;
           text-align: center;
           border-radius: 100%;
           border-style: solid;
-          @circles: 1, 2, 2, 5, 5, 10, 10, 20, 20, 40, 40, 80;
-          .cercle(@iterator: 1, @_size: 1) when(@iterator <= length(@circles)) {
+          border-color: transparent;
+          pointer-events: none;
+          .letter(@iterator: 1, @_size: 1) when(@iterator <= length(@circles)) {
             @from: extract(@circles, @iterator);
             @to: extract(@circles, @iterator + 1);
             @difference: @to - @from;
             &:nth-child(n+@{from}):nth-child(-n+@{to}) {
               @size: (30px * @_size);
-              color: yellow;
               width: @size;
               height: @size;
               left: -webkit-calc(~'50% - @{size} / 2');
@@ -85,10 +96,12 @@
               }
               .text((@_iterator + 1));
             }.text();
-            .cercle((@iterator + 2), (@_size + 2));
-          }.cercle();
+            .letter((@iterator + 2), (@_size + 2));
+          }.letter();
           text {
+            cursor: pointer;
             position: absolute;
+            pointer-events: all;
           }
         }
       }
@@ -96,7 +109,6 @@
     dictionary {
       position: absolute;
       display: inline-block;
-      background-color: rgb(255, 255, 255);
       color: rgb(0, 0, 0);
       width: -webkit-calc(~'30% - 5px');
       height: -webkit-calc(~'100% - 5px');

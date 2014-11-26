@@ -53,6 +53,7 @@ var Keyboard = {
   'event': function (tag) {
     var letter = tag.toElement.textContent;
 
+    console.log(tag, letter);
     Keyboard.json[Keyboard.letter][letter] += 1;
     Keyboard.letter = letter;
     Keyboard.put(Keyboard.json[letter]);
