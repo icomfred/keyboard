@@ -68,7 +68,7 @@ var Search = {
           Dictionary.json[word] = 1;
         else
           Dictionary.json[word] += 1;
-        Door.send({'class': 'keyboard', 'method': 'shell'}, {'key': word});
+        Gui.call(word, undefined);
         Search.clear();
         Dictionary.clear();
       }

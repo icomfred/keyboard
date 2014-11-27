@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word.js                                            :+:      :+:    :+:   */
+/*   gui.js                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,36 @@
 
 'use strict';
 
-/*
-** The Word's Class is calls by Dictionary's class for
-** adds a word's button at a item.
+var py = require('python-shell');
+
+/* 
+** The Gui's class is calls for request the socket of
+** says a sentence.
 */
 
-var Word = {
-  'tag': 'text',
+var Gui = {
+  'silent': false,
+  'sentence': undefined,
 
-  'put': function (text) {
-    var tag = document.createElement(Word.tag);
-
-    tag.addEventListener('click', Word.event, false);
-    tag.textContent = text;
-    return (tag);
+  'run': function (text, argv) {
+    if (!Gui.silent) {
+      py.run('gui.py', {
+        'scriptPath': './app/python/',
+        'pythonPath': Conf.python.path,
+        'args': ((typeof argv === 'object') ? argv : [])
+      }, function (err, results) {
+        Door.send({
+          'class': 'keyboard',
+          'method': 'shell'
+        }, {
+          'key': text
+        });
+        if (err)
+          Debug.console(err);
+      });
+    }
   },
-  'event': function (node) {
-    var word = node.toElement.textContent;
-
-    Gui.call(word, undefined);
-    Dictionary.json[word] += 1;
-    Search.clear();
-    Dictionary.clear();
+  'call': function (text, argv) {
+    Gui.run(text, argv);
   }
-}
+};

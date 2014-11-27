@@ -23,35 +23,49 @@
   &, body, program {
     position: absolute;
     display: block;
-    width: 500px;
-    height: 420px;
+    overflow: hidden;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
     padding: 0px;
     margin: 0px;
+    -webkit-app-region: drag;
   }
   program {
-    background-color: rgb(10, 18, 84);
     keyboard {
+      background-color: rgba(255, 255, 255, .95);
+      box-shadow: 7px 0px 35px rgba(0, 0, 0, 0.45);
       position: relative;
       display: inline-block;
       overflow-wrap: break-word;
       width: -webkit-calc(~'70% - 5px');
-      height: -webkit-calc(~'100% - 5px');
-      padding: 2.5px;
+      height: 100%;
+      border-right-style: solid;
+      border-right-color: rgb(222, 220, 221);
+      border-right-width: 2px;
+      -webkit-app-region: drag;
       menu {
+        background-color: rgba(235, 235, 234, .8);
         position: relative;
         display: inline-block;
         width: 100%;
         height: -webkit-calc(~'10%');
         margin: 0px;
         padding: 0px;
+        -webkit-app-region: drag;
         select {
-          background-color: rgb(41, 79, 255);
+          -webkit-app-region: no-drag;
+          font-weight: bold;
+          background-color: rgb(255, 255, 255);
           position: relative;
           display: inline-block;
           width: -webkit-calc(~'33.3% - 5px');
-          height: -webkit-calc(~'100% - 5px');
+          height: -webkit-calc(~'100% - 20px');
           margin: 2.5px;
+          margin-top: 10px;
+          margin-bottom: 10px;
           border: none;
+          -webkit-app-region: no-drag;
         }
       }
       letters {
@@ -59,13 +73,14 @@
         display: block;
         width: -webkit-calc(~'100% - 6px');
         height: -webkit-calc(~'90% - 6px - 28px');
-        background-color: rgba(41, 110, 248, .25);
+        background-image: -webkit-radial-gradient(circle, silver, white 100%);
         border-radius: 100%;
         border-style: solid;
         border-color: transparent;
         border-width: 3px;
         margin-top: -webkit-calc(~'5% - 3px');
         margin-bottom: -webkit-calc(~'5% - 3px');
+        pointer-events: none;
         letter {
           position: absolute;
           text-align: center;
@@ -102,36 +117,42 @@
             cursor: pointer;
             position: absolute;
             pointer-events: all;
+            -webkit-app-region: no-drag;
           }
         }
       }
     }
     dictionary {
+      background-color: rgba(240, 244, 247, 0.7);
       position: absolute;
       display: inline-block;
       color: rgb(0, 0, 0);
       width: -webkit-calc(~'30% - 5px');
       height: -webkit-calc(~'100% - 5px');
       padding: 2.5px;
+      -webkit-app-region: drag;
       search {
+        background-color: rgb(255, 255, 255);
         cursor: pointer;
         position: absolute;
         display: -webkit-box;
-        width: -webkit-calc(~'85% - 5px');
-        height: -webkit-calc(~'10% - 5px');
-        margin: 2.5px;
+        width: -webkit-calc(~'100% - 20px');
+        height: -webkit-calc(~'10% - 20px');
+        margin: 10px;
         top: 0px;
         left: 0px;
         -webkit-box-align: center;
+        -webkit-app-region: no-drag;
       }
       clear {
         cursor: pointer;
         position: absolute;
         width: -webkit-calc(~'15% - 5px');
-        height: -webkit-calc(~'10% - 5px');
-        margin: 2.5px;
+        height: -webkit-calc(~'10% - 20px');
+        margin: 10px;
         top: 0px;
-        right: 0px;
+        left: -webkit-calc(~'100% - 40px');
+        -webkit-app-region: no-drag;
         &::after {
           color: blue;
           position: absolute;
@@ -153,10 +174,12 @@
         margin: 2.5px;
         bottom: 0px;
         left: 0px;
+        -webkit-app-region: drag;
         item {
           position: relative;
           display: inline-block;
           width: 100%;
+          -webkit-app-region: no-drag;
           text {
             cursor: pointer;
             position: relative;
@@ -164,6 +187,7 @@
             width: -webkit-calc(~'85% - 2.5px');
             height: -webkit-calc(~'100% - 5px');
             margin: 2.5px;
+            -webkit-app-region: no-drag;
           }
           delete {
             cursor: pointer;
@@ -172,6 +196,7 @@
             width: -webkit-calc(~'15% - 7.5px');
             height: -webkit-calc(~'100% - 5px');
             margin: 2.5px;
+            -webkit-app-region: no-drag;
             &::after {
               color: red;
               position: absolute;

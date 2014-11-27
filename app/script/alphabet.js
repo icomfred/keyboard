@@ -57,5 +57,6 @@ var Alphabet = {
       node.removeChild(node.firstChild);
     Alphabet.put(node);
     node.addEventListener('change', Alphabet.event);
+    Alphabet.event();
   }
 };

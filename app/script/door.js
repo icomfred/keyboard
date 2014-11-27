@@ -71,6 +71,7 @@ var Door = {
   'lauch': function (socket) {
     socket.on('connection', function (dsocket) {
       Door.socket = dsocket;
+      Door.socket.on('console', Debug.console)
       Door.socket.on('connect', Door.open);
     });
   },

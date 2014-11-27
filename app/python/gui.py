@@ -14,15 +14,15 @@ class Gui():
     pid = None;
 
     for pid in range(len(Gui.list)):
+      print(pid, win32gui.GetWindowText(Gui.list[pid]));
       if win32gui.GetWindowText(Gui.list[pid]) == '':
         break ;
-    pid = Gui.list[pid + 2];
+    pid = Gui.list[pid + 1];
     Gui.list = [];
     Gui.to(self, pid);
 
   def to(self, pid):
-    print(pid);
     win32gui.SetForegroundWindow(pid);
 
-Gui().back();
-
+if (__name__ == '__main__'):
+  Gui().back();

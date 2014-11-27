@@ -7,7 +7,7 @@
     "style": "./default/",
     "socket": {
       "ip": "127.0.0.1",
-      "port": 1964,
+      "port": 1960,
       "buffer": 200
     },
     "python": {
@@ -24,6 +24,7 @@
     "alphabet": {
       "files": [
         "literature.json",
+        "alphabet.json",
         "math.json"
       ],
       "file": "literature.json",
@@ -49,14 +50,14 @@
   "window": {
     "position": "center",
     "always-on-top": true,
-    "frameless": true,
+    "frameless": false,
     "toolbar": false,
-    "frame": true,
+    "frame": false,
     "show": true,
     "width": 500,
     "height": 420,
     "min_width": 500,
     "min_height": 420,
-    "transparent": false
+    "transparent": true
   }
 }
