@@ -15,17 +15,11 @@
 var Reload = {
   'node': 'clear',
 
-  'start': function (arg) {
-    var reload = document.querySelector(Reload.node);
-
-    reload.removeAttribute('disabled');
-  },
   'clear': function (arg) {
     var reload = document.querySelector(Reload.node);
 
     Search.clear();
     Dictionary.clear();
-    reload.setAttribute('disabled', 'disabled');
   },
   'default': window.addEventListener('click', function (arg) {
     var name = arg.toElement.tagName.toLowerCase();

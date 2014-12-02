@@ -36,14 +36,15 @@ var Keyboard = {
     var node  = Keyboard.clear();
     var sort  = Search.sort(json);
     var count = -1;
-    var tag;
     var tag2;
+    var tag;
 
     while (node.firstChild)
       node.removeChild(node.firstChild);
     while (sort[++count]) {
       tag2 = document.createElement(Keyboard.tag2);
       tag2.textContent = sort[count];
+      tag2.setAttribute('data-text', sort[count]);
       tag2.addEventListener('click', Keyboard.event, false);
       tag = document.createElement(Keyboard.tag);
       tag.appendChild(tag2);
@@ -57,7 +58,7 @@ var Keyboard = {
     Keyboard.letter = letter;
     Keyboard.put(Keyboard.json[letter]);
     Search.put(letter);
-    Reload.start();
+    Gui.call(letter, undefined);
   },
   'default': window.addEventListener('load', function (arg) {
     var address = Keyboard.root + Conf.lang.locale + '/' + Conf.alphabet.file;

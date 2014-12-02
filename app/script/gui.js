@@ -14,6 +14,10 @@
 
 var py = require('python-shell');
 
+String.prototype.capitalize = function() {
+  return (this.charAt(0).toUpperCase() + this.slice(1));
+};
+
 /* 
 ** The Gui's class is calls for request the socket of
 ** says a sentence.
@@ -42,6 +46,10 @@ var Gui = {
     }
   },
   'call': function (text, argv) {
+    if (Capitalize.active) {
+      text = text.capitalize();
+      Capitalize.event(false);
+    }
     Gui.run(text, argv);
   }
 };

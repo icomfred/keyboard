@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "configuration": {
     "style": "./default/",
+    "capitalize": true,
     "socket": {
       "ip": "127.0.0.1",
       "port": 1960,
@@ -33,7 +34,6 @@
     "lang": {
       "locales": [
         "en",
-        "ja",
         "fr"
       ],
       "locale": "en",
