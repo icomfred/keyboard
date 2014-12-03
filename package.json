@@ -6,6 +6,9 @@
   "configuration": {
     "style": "./default/",
     "capitalize": true,
+    "separator": [
+      " "
+    ],
     "socket": {
       "ip": "127.0.0.1",
       "port": 1960,
@@ -25,10 +28,10 @@
     "alphabet": {
       "files": [
         "literature.json",
-        "alphabet.json",
+        "default.json",
         "math.json"
       ],
-      "file": "literature.json",
+      "file": "default.json",
       "letter": "a"
     },
     "lang": {

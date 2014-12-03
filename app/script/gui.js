@@ -26,6 +26,7 @@ String.prototype.capitalize = function() {
 var Gui = {
   'silent': false,
   'sentence': undefined,
+  'separator': Conf.separator,
 
   'run': function (text, argv) {
     if (!Gui.silent) {
@@ -46,10 +47,8 @@ var Gui = {
     }
   },
   'call': function (text, argv) {
-    if (Capitalize.active) {
-      text = text.capitalize();
-      Capitalize.event(false);
-    }
+    if ((Gui.separator).indexOf(text) !== -1)
+      Reload.clear();
     Gui.run(text, argv);
   }
 };
