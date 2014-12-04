@@ -14,7 +14,7 @@
 
 Object.prototype.max = function (before) {
   var count = -1;
-  var items  = Object.keys(this);
+  var items = Object.keys(this);
   var max;
 
   while (items[++count]) {
@@ -56,6 +56,16 @@ var Search = {
     node.textContent += letter;
     Dictionary.put(node.textContent);
   },
+  'event': function (letters) {
+    var shell = '^+{left}';
+    var count = -1;
+
+    while (++count < letters.length)
+      shell += '{' + letters[count] + '}';
+    Gui.call(shell  + '{ }', undefined);
+    Search.clear();
+    Dictionary.clear();
+  },
   'default': window.addEventListener('click', function (arg) {
     var node = arg.toElement;
     var name = node.tagName.toLowerCase();
@@ -68,9 +78,7 @@ var Search = {
           Dictionary.json[word] = 1;
         else
           Dictionary.json[word] += 1;
-        Gui.call(word, undefined);
-        Search.clear();
-        Dictionary.clear();
+        Search.event(word);
       }
     }
   }, false)

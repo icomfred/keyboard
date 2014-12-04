@@ -6,9 +6,7 @@
   "configuration": {
     "style": "./default/",
     "capitalize": true,
-    "separator": [
-      " "
-    ],
+    "separator": [" ", ",", ";", ":", "?", "!", "."],
     "socket": {
       "ip": "127.0.0.1",
       "port": 1960,

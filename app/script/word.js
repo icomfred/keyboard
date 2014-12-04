@@ -30,7 +30,7 @@ var Word = {
   'event': function (node) {
     var word = node.toElement.textContent;
 
-    Gui.call(word, undefined);
+    Search.event(word);
     Dictionary.json[word] += 1;
     Search.clear();
     Dictionary.clear();

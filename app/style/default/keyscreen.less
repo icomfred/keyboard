@@ -34,7 +34,7 @@
   program {
     keyboard {
       background-color: rgba(255, 255, 255, .95);
-      box-shadow: 7px 0px 35px rgba(0, 0, 0, 0.45);
+      box-shadow: 7px 0px 35px rgba(0, 0, 0, .45);
       position: relative;
       display: inline-block;
       overflow-wrap: break-word;
@@ -49,26 +49,33 @@
         position: relative;
         display: inline-block;
         width: 100%;
-        height: -webkit-calc(~'10%');
+        height: -webkit-calc(~'15%');
         margin: 0px;
         padding: 0px;
         -webkit-app-region: drag;
+        exit {
+          background-color: red;
+          display: block;
+          border-radius: 100%;
+          margin: 10px;
+          height: -webkit-calc(~'20px - 10px');
+          width: -webkit-calc(~'20px - 10px');
+        }
         select {
           font-weight: bold;
           background-color: rgb(255, 255, 255);
           position: relative;
           display: inline-block;
-          height: -webkit-calc(~'100% - 20px');
+          height: -webkit-calc(~'70% - 20px');
           margin: 2.5px;
-          margin-top: 10px;
           margin-bottom: 10px;
           border: none;
           -webkit-app-region: no-drag;
           &#lang {
-            width: -webkit-calc(~'23.3% - 5px');
+            width: -webkit-calc(~'26% - 5px');
           }
           &#alphabet {
-            width: -webkit-calc(~'32.1% - 5px');
+            width: -webkit-calc(~'29.4% - 5px');
           }
           &#mode {
             width: -webkit-calc(~'31.3% - 5px');
@@ -80,9 +87,8 @@
           position: absolute;
           display: inline-block;
           width: -webkit-calc(~'13.3% - 5px');
-          height: -webkit-calc(~'100% - 20px');
+          height: -webkit-calc(~'70% - 20px');
           margin: 2.5px;
-          margin-top: 10px;
           margin-bottom: 10px;
           border: none;
           -webkit-app-region: no-drag;
@@ -97,8 +103,8 @@
       letters {
         position: relative;
         display: block;
-        width: -webkit-calc(~'100% - 6px');
-        height: -webkit-calc(~'90% - 6px - 28px');
+        width: -webkit-calc(~'100% - 22px');
+        height: -webkit-calc(~'85% - 6px - 28px');
         background-image: -webkit-radial-gradient(circle, silver, white 100%);
         border-radius: 100%;
         border-style: solid;
@@ -106,6 +112,8 @@
         border-width: 3px;
         margin-top: -webkit-calc(~'5% - 3px');
         margin-bottom: -webkit-calc(~'5% - 3px');
+        margin-left: -webkit-calc(~'5% - 10px');
+        margin-right: -webkit-calc(~'5% - 10px');
         pointer-events: none;
         letter {
           position: absolute;
@@ -147,7 +155,7 @@
             height: 17px;
             -webkit-app-region: no-drag;
             &:hover {
-              z-index: 100;
+              z-index: 2;
             }
             &:hover:before {
               content: '';
@@ -174,11 +182,14 @@
               font-size: 30px;
             }
           }
+          &:hover {
+            z-index: 2;
+          }
         }
       }
     }
     dictionary {
-      background-color: rgba(240, 244, 247, 0.7);
+      background-color: rgba(240, 244, 247, .7);
       position: absolute;
       display: inline-block;
       color: rgb(0, 0, 0);
@@ -192,9 +203,10 @@
         position: absolute;
         display: -webkit-box;
         width: -webkit-calc(~'100% - 20px');
-        height: -webkit-calc(~'10% - 20px');
+        height: -webkit-calc(~'(15% * 0.7) - 20px');
         margin: 10px;
-        top: 0px;
+        margin-top: 2.5px;
+        top: -webkit-calc(~'20px + 10px');
         left: 0px;
         -webkit-box-align: center;
         -webkit-app-region: no-drag;
@@ -202,10 +214,11 @@
       clear {
         cursor: pointer;
         position: absolute;
-        width: -webkit-calc(~'15% - 5px');
-        height: -webkit-calc(~'10% - 20px');
+        width: -webkit-calc(~'100% - 20px');
+        height: -webkit-calc(~'(15% * 0.7) - 20px');
         margin: 10px;
-        top: 0px;
+        margin-top: 2.5px;
+        top: -webkit-calc(~'20px + 10px');
         left: -webkit-calc(~'100% - 40px');
         -webkit-app-region: no-drag;
         &::after {
@@ -225,7 +238,7 @@
         position: absolute;
         display: block;
         width: -webkit-calc(~'100% - 5px');
-        height: -webkit-calc(~'90% - 5px');
+        height: -webkit-calc(~'85% - 5px');
         margin: 2.5px;
         bottom: 0px;
         left: 0px;
