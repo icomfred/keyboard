@@ -18,6 +18,7 @@
 */
 
 var Dictionary = {
+  'target': 'dictionary',
   'node': 'items',
   'tag': 'item',
   'root': './app/dictionary/',

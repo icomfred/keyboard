@@ -14,16 +14,18 @@
 
 /*
 ** The Keyboard's Class is init by Jade's Class, it's role is 
-** of reload the letters of keyboard.
+** of reload the letters of keyboard and press the key.
 */
 
 var Keyboard = {
+  'target': 'keyboard',
   'node': 'letters',
   'tag': 'letter',
   'tag2': 'text',
   'root': './app/alphabet/',
   'json': undefined,
   'letter': Conf.alphabet.letter,
+  'capitalize': true,
 
   'clear': function (arg) {
     var node = document.querySelector(Keyboard.node);
@@ -58,7 +60,9 @@ var Keyboard = {
     Keyboard.letter = letter;
     Keyboard.put(Keyboard.json[letter]);
     Search.put(letter);
-    Gui.call(letter, undefined);
+    Gui.keyboard_letter(letter);
+    Capitalize.search();
+    Capitalize.keyboard();
   },
   'default': window.addEventListener('load', function (arg) {
     var address = Keyboard.root + Conf.lang.locale + '/' + Conf.alphabet.file;

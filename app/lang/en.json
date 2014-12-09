@@ -1,4 +1,12 @@
 {
+  "˽": " ",
+  ",": ", ",
+  "!": "! ",
+  "?": "? ",
+  ":": ": ",
+  ";": "; ",
+  ".": ". ",
+  "↵": "\n",
   "firsts": "🔍AAAaaaa",
   "first_afters": "🔍aAaAaaa",
   "literature": "⌨Literature",

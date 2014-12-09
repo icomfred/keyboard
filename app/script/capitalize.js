@@ -13,22 +13,41 @@
 'use strict';
 
 var Capitalize = {
-  'active': Conf.capitalize,
-  'node': 'capitalize',
+  'active': Conf.text.capitalize,
+  'target': 'capitalize',
+  'tag': 'capitalize',
 
-  'event': function (arg) {
-    var node = document.querySelector('program');
-    var active = (typeof arg === 'boolean' ? arg.active : Capitalize.active);
+  'search': function (arg) {
+    /* Is capitalize's statut write by the program: see GUI's class. */
+    var node   = document.querySelector(Dictionary.target);
 
-    node.setAttribute(Capitalize.node, active);
+    node.setAttribute(Capitalize.tag, Search.capitalize);
   },
-  'default': window.addEventListener('click', function (arg) {
+  'keyboard': function (arg) {
+    /* Is capitalize's statut write by the program: see GUI's class. */
+    var node   = document.querySelector(Keyboard.target);
+
+    node.setAttribute(Capitalize.tag, Keyboard.capitalize);
+  },
+  'program': function (arg) {
+    /* Is capitalize's statut write by the user. */
+    var node   = document.querySelector('program');
+    var active = Capitalize.active;
+
+    node.setAttribute(Capitalize.tag, active);
+  },
+  'init': window.addEventListener('click', function (arg) {
     var node = arg.toElement;
     var name = node.tagName.toLowerCase();
 
-    if (name === Capitalize.node) {
+    if (name === Capitalize.target) {
       Capitalize.active = !Capitalize.active;
-      Capitalize.event(undefined);
+      Capitalize.program();
     }
+  }, false),
+  'default': window.addEventListener('load', function (arg) {
+    Capitalize.program();
+    Capitalize.search();
+    Capitalize.keyboard();
   }, false)
 };

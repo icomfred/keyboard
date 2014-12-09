@@ -18,6 +18,15 @@ String.prototype.capitalize = function() {
   return (this.charAt(0).toUpperCase() + this.slice(1));
 };
 
+String.prototype.argument = function() {
+  var count   = -1;
+  var results = '';
+
+  while (++count < this.length)
+    results += '{' + this[count] + '}';
+  return (results);
+};
+
 /* 
 ** The Gui's class is calls for request the socket of
 ** says a sentence.
@@ -25,8 +34,10 @@ String.prototype.capitalize = function() {
 
 var Gui = {
   'silent': false,
-  'sentence': undefined,
-  'separator': Conf.separator,
+  'uppercase': Conf.text.uppercase,
+  'nouppercase': Conf.text.nouppercase,
+  'capitalize': true,
+  'space': false,
 
   'run': function (text, argv) {
     if (!Gui.silent) {
@@ -46,9 +57,43 @@ var Gui = {
       });
     }
   },
-  'call': function (text, argv) {
-    if ((Gui.separator).indexOf(text) !== -1)
+  'keyboard_letter': function (letter) {
+    /* This function is called by the Keyboard's Class for write a letter
+    ** or a ponctuation. */
+    var uppercase   = Gui.uppercase;
+    var nouppercase = Gui.nouppercase;
+    var capitalize  = Capitalize.active ? Keyboard.capitalize : false;
+    var space       = Lang.translate(' ', undefined);
+    var shell       = '';
+
+    Keyboard.capitalize  = (uppercase.indexOf(letter) !== -1) ? true : false;
+    Gui.capitalize  = (nouppercase.indexOf(letter) !== -1) ? true : false;
+    letter = Lang.translate(letter, undefined);
+    shell = (capitalize) ? letter.capitalize().argument() : letter.argument();
+    if (Keyboard.capitalize || Gui.capitalize) {
+      Search.capitalize = (!Keyboard.capitalize) ? false : true;
       Reload.clear();
-    Gui.run(text, argv);
+      if (Gui.space)
+        shell = '+{left}' + shell;
+    }
+    Gui.space = false;
+    Gui.run(shell, undefined);
+  },
+  'search_letter': function (letters) {
+    /* This function is called by the Search's Class for write a letters
+    ** or a ponctuation. */
+    var uppercase   = Gui.uppercase;
+    var space      = Lang.translate(' ', undefined);
+    var shell      = '^+{left}';
+
+    if (Search.capitalize) {
+      if (Capitalize.active)
+        letters = letters.capitalize();
+      Search.capitalize = false;
+    }
+    shell += letters.argument();
+    shell += '{' + space + '}';
+    Gui.space = true;
+    Gui.run(shell, undefined);
   }
 };

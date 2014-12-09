@@ -26,7 +26,8 @@ Object.prototype.max = function (before) {
 };
 
 var Search = {
-  'node': 'search',
+  'target': 'search',
+  'capitalize': true,
 
   'sort': function (arg) {
     var items = Object.keys(arg);
@@ -45,33 +46,31 @@ var Search = {
     return (sort);
   },
   'clear': function (arg) {
-    var node = document.querySelector(Search.node);
+    var node = document.querySelector(Search.target);
 
     Dictionary.sort = Search.sort(Dictionary.json);
     node.textContent = '';
   },
   'put': function (letter) {
-    var node = document.querySelector(Search.node);
+    var node = document.querySelector(Search.target);
 
     node.textContent += letter;
     Dictionary.put(node.textContent);
   },
   'event': function (letters) {
-    var shell = '^+{left}';
     var count = -1;
 
-    while (++count < letters.length)
-      shell += '{' + letters[count] + '}';
-    Gui.call(shell  + '{ }', undefined);
+    Gui.search_letter(letters);
     Search.clear();
     Dictionary.clear();
+    Capitalize.search();
   },
   'default': window.addEventListener('click', function (arg) {
     var node = arg.toElement;
     var name = node.tagName.toLowerCase();
     var word;
 
-    if (name === Search.node) {
+    if (name === Search.target) {
       word = node.textContent
       if (word.length) {
         if (typeof Dictionary.json[word] !== 'number')

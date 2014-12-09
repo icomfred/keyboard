@@ -36,6 +36,5 @@ var Body = {
   'default': window.addEventListener('load', function(arg) {
     Body.inner(document.title + '.jade');
     Lang.event();
-    Capitalize.event();
   }, false)
 };

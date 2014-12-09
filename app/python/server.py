@@ -79,8 +79,8 @@ class Server():
     Server.connct.send(send);
 
 if (__name__ == '__main__'):
-  ip = str(sys.argv[1]);
-  port = int(sys.argv[2]);
+  ip     = str(sys.argv[1]);
+  port   = int(sys.argv[2]);
   buffer = int(sys.argv[3]);
 
   Server().init((ip, port), buffer);

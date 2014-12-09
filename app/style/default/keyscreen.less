@@ -54,6 +54,7 @@
         padding: 0px;
         -webkit-app-region: drag;
         exit {
+          cursor: pointer;
           background-color: red;
           display: block;
           border-radius: 100%;
@@ -62,9 +63,10 @@
           width: -webkit-calc(~'20px - 10px');
         }
         select {
-          font-weight: bold;
+          cursor: pointer;
           background-color: rgb(255, 255, 255);
           position: relative;
+          font-weight: bold;
           display: inline-block;
           height: -webkit-calc(~'70% - 20px');
           margin: 2.5px;
@@ -82,9 +84,10 @@
           }
         }
         capitalize {
-          font-weight: bold;
+          cursor: pointer;
           background-color: rgb(255, 255, 255);
           position: absolute;
+          font-weight: bold;
           display: inline-block;
           width: -webkit-calc(~'13.3% - 5px');
           height: -webkit-calc(~'70% - 20px');
@@ -198,8 +201,8 @@
       padding: 2.5px;
       -webkit-app-region: drag;
       search {
-        background-color: rgb(255, 255, 255);
         cursor: pointer;
+        background-color: rgb(255, 255, 255);
         position: absolute;
         display: -webkit-box;
         width: -webkit-calc(~'100% - 20px');
@@ -279,11 +282,15 @@
       }
     } 
     &[capitalize='true'] {
-      *:first-letter {
-        text-transform: uppercase;
-      }
       & keyboard menu capitalize {
         color: green;
+      }
+      & keyboard[capitalize='true'],
+      & dictionary[capitalize='true'] {
+        * letter text:hover:after,
+        *:first-letter {
+          text-transform: uppercase;
+        }
       }
     }
     &[capitalize='false'] {
