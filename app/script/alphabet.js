@@ -12,7 +12,6 @@
 
 'use strict';
 
-
 var Alphabet = {
   'id': 'alphabet',
   'tag': 'option',
