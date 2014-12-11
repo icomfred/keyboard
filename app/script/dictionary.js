@@ -21,8 +21,8 @@ var Dictionary = {
   'target': 'dictionary',
   'node': 'items',
   'tag': 'item',
-  'root': './app/dictionary/',
   'limit': Conf.search.limit,
+  'root': './app/dictionary/',
   'json': undefined,
   'sort': undefined,
 
@@ -75,8 +75,8 @@ var Dictionary = {
           return (false);
     return (true);
   },
-  'default': window.addEventListener('load', function (arg) {
-    var address = Dictionary.root + 'default.json';
+  'init': function (arg) {
+    var address = Dictionary.root + Conf.lang.locale + '.json';
 
     File.read(address).then(function(res, err) {
       if (!err) {
@@ -84,5 +84,8 @@ var Dictionary = {
         Dictionary.sort = Search.sort(Dictionary.json);
       }
     });
+  },
+  'default': window.addEventListener('load', function (arg) {
+    Dictionary.init();
   }, false)
 };

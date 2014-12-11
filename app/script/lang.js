@@ -57,7 +57,9 @@ var Lang = {
     Lang.locale = lang;
     Lang.init();
     Alphabet.init();
+    Dictionary.init();
     Mode.init();
+    Reload.clear();
   },
   'init': function (arg) {
     var node = document.getElementById(Lang.id);

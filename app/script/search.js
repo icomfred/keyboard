@@ -29,21 +29,23 @@ var Search = {
   'target': 'search',
   'capitalize': true,
 
-  'sort': function (arg) {
-    var items = Object.keys(arg);
-    var limit = items.length;
-    var max   = arg.max();
-    var sort  = [];
-    var count;
+  'sort': function (list) {
+    if (list) {
+      var items = Object.keys(list);
+      var limit = items.length;
+      var max   = list.max();
+      var sort  = [];
+      var count;
 
-    while (sort.length < limit) {
-      count = -1;
-      while (++count < limit)
-        if (max == arg[items[count]])
-          sort.push(items[count]);
-      max = arg.max(max);
+      while (sort.length < limit) {
+        count = -1;
+        while (++count < limit)
+          if (max == list[items[count]])
+            sort.push(items[count]);
+        max = list.max(max);
+      }
+      return (sort);
     }
-    return (sort);
   },
   'clear': function (arg) {
     var node = document.querySelector(Search.target);
