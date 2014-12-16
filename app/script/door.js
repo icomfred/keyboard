@@ -28,7 +28,7 @@ var Door = {
   /* The procedure opens the socket. */
   'socket': undefined,
   'online': false,
-  'active': true,
+  'active': false,
   'run': py.run('server.py', {
     'scriptPath': './app/python/',
     'pythonPath': Conf.python.path,

@@ -47,6 +47,7 @@ var Mode = {
     while (node.firstChild)
       node.removeChild(node.firstChild);
     Mode.put(node);
+    node.addEventListener('change', Save.init);
     node.addEventListener('change', Mode.event);
   }
 };

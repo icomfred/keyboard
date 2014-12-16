@@ -12,28 +12,31 @@
 
 'use strict';
 
-Object.prototype.max = function (before) {
-  var count = -1;
-  var items = Object.keys(this);
-  var max;
-
-  while (items[++count]) {
-    if (max === undefined || max < this[items[count]])
-      if (before === undefined || this[items[count]] < before)
-        max = this[items[count]];
-  }
-  return (max);
-};
-
 var Search = {
   'target': 'search',
   'capitalize': true,
 
+  'max': function (list, before) {
+    /* The anonym function returns the max number value
+    ** into a list's object. */
+    var count = -1;
+    var items = Object.keys(list);
+    var max;
+
+    while (items[++count]) {
+      if (max === undefined || max < list[items[count]])
+        if (before === undefined || list[items[count]] < before)
+          max = list[items[count]];
+    }
+    return (max);
+  },
   'sort': function (list) {
+    /* The anonym function returns the converting
+    ** from a number's Object to a sort number's Array. */
     if (list) {
       var items = Object.keys(list);
       var limit = items.length;
-      var max   = list.max();
+      var max   = Search.max(list);
       var sort  = [];
       var count;
 
@@ -42,7 +45,7 @@ var Search = {
         while (++count < limit)
           if (max == list[items[count]])
             sort.push(items[count]);
-        max = list.max(max);
+        max = Search.max(list, max);
       }
       return (sort);
     }

@@ -56,12 +56,12 @@
     "always-on-top": true,
     "frameless": false,
     "toolbar": false,
-    "frame": false,
+    "frame": true,
     "show": true,
     "width": 500,
     "height": 420,
     "min_width": 500,
     "min_height": 420,
-    "transparent": true
+    "transparent": false
   }
 }

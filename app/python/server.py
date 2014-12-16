@@ -10,18 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-import win32com.client
+import pykeyboard
 
 class Keyboard():
   """The class Keyboard is a simple library of basing functions.""";
-  w32 = win32com.client.Dispatch("WScript.Shell");
+  k = pykeyboard.PyKeyboard()
     
   def shell(self, args):
     """The function is a special shell.""";
-    shell = Keyboard.w32;
-    key   = str(args['key']);
+    k    = Keyboard.k;
+    text = str(args['key']);
 
-    shell.SendKeys(key);
+    k.type_string(text);
 
 # **************************************************************************** #
 #                                                                              #
@@ -54,6 +54,7 @@ class Server():
 
   def loop(self, buffer):
     while (42):
+      buffer = str(buffer)[::-1].encode('utf-8')
       data = Server.connct.recv(buffer);
       if not (data):
         break ;
@@ -76,7 +77,7 @@ class Server():
     lend = 200 - len(send);
 
     send += lend * ' ';
-    Server.connct.send(send);
+    Server.connct.send(bytes(send, 'UTF-8'));
 
 if (__name__ == '__main__'):
   ip     = str(sys.argv[1]);

@@ -33,7 +33,7 @@
   }
   program {
     keyboard {
-      background-color: rgba(255, 255, 255, .95);
+      background-color: rgb(44, 48, 60);
       box-shadow: 7px 0px 35px rgba(0, 0, 0, .45);
       position: relative;
       display: inline-block;
@@ -41,37 +41,29 @@
       width: -webkit-calc(~'70% - 5px');
       height: 100%;
       border-right-style: solid;
-      border-right-color: rgb(222, 220, 221);
+      border-right-color: rgb(0, 0, 0);
       border-right-width: 2px;
       -webkit-app-region: drag;
       menu {
-        background-color: rgba(235, 235, 234, .8);
         position: relative;
         display: inline-block;
         width: 100%;
-        height: -webkit-calc(~'15%');
+        height: -webkit-calc(~'7%');
         margin: 0px;
         padding: 0px;
         -webkit-app-region: drag;
-        exit {
-          cursor: pointer;
-          background-color: red;
-          display: block;
-          border-radius: 100%;
-          margin: 10px;
-          height: -webkit-calc(~'20px - 10px');
-          width: -webkit-calc(~'20px - 10px');
-        }
         select {
+          color: rgb(231, 232, 234);
           cursor: pointer;
-          background-color: rgb(255, 255, 255);
+          background-color: rgb(101, 112, 125);
           position: relative;
           font-weight: bold;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
           display: inline-block;
-          height: -webkit-calc(~'70% - 20px');
+          height: -webkit-calc(~'100% - 5px');
           margin: 2.5px;
-          margin-bottom: 10px;
           border: none;
+          border-radius: 3px;
           -webkit-app-region: no-drag;
           &#lang {
             width: -webkit-calc(~'26% - 5px');
@@ -88,12 +80,13 @@
           background-color: rgb(255, 255, 255);
           position: absolute;
           font-weight: bold;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
           display: inline-block;
           width: -webkit-calc(~'13.3% - 5px');
-          height: -webkit-calc(~'70% - 20px');
+          height: -webkit-calc(~'100% - 5px');
           margin: 2.5px;
-          margin-bottom: 10px;
           border: none;
+          border-radius: 3px;
           -webkit-app-region: no-drag;
           &:after {
             content: 'a\2192 A';
@@ -108,11 +101,11 @@
         display: block;
         width: -webkit-calc(~'100% - 22px');
         height: -webkit-calc(~'85% - 6px - 28px');
-        background-image: -webkit-radial-gradient(circle, silver, white 100%);
+        /*background-image: -webkit-radial-gradient(circle, #394057, white 100%);*/
         border-radius: 100%;
         border-style: solid;
         border-color: transparent;
-        border-width: 3px;
+        border-width: 1px;
         margin-top: -webkit-calc(~'5% - 3px');
         margin-bottom: -webkit-calc(~'5% - 3px');
         margin-left: -webkit-calc(~'5% - 10px');
@@ -129,6 +122,10 @@
             @from: extract(@circles, @iterator);
             @to: extract(@circles, @iterator + 1);
             @difference: @to - @from;
+            &:nth-child(n+@{from}) {
+              border-color: rgb(57, 64, 87);
+              z-index: @to;
+            }
             &:nth-child(n+@{from}):nth-child(-n+@{to}) {
               @size: (30px * @_size);
               width: @size;
@@ -136,29 +133,36 @@
               left: -webkit-calc(~'50% - @{size} / 2');
               top: -webkit-calc(~'50% - @{size} / 2');
             }
-            .text(@_iterator: 1) when(@_iterator <= @difference) {
+            .text(@_iterator: 1, @_zindex: @to + 1) when(@_iterator <= @difference) {
               @letter: @from + @_iterator;
               @degret: 360 / @difference * @_iterator;
+              @zindex: @_zindex;
               &:nth-child(@{letter}n) {
+                z-index: @_zindex;
+                border-color: transparent;
                 -webkit-transform: rotate(~'@{degret}deg');
               }
               &:nth-child(@{letter}n) text {
                 @_degret: 360 - @degret;
                 -webkit-transform: rotate(~'@{_degret}deg');
               }
-              .text((@_iterator + 1));
+              .text((@_iterator + 1), (@_zindex + 1));
             }.text();
             .letter((@iterator + 2), (@_size + 2));
           }.letter();
           text {
+            color: rgb(170, 170, 170);
+            background-color: rgb(225, 240, 188);
             cursor: pointer;
             position: absolute;
             pointer-events: all;
             width: 17px;
             height: 17px;
+            top: -10px;
+            border-radius: 100%;
             -webkit-app-region: no-drag;
             &:hover {
-              z-index: 2;
+              z-index: 5000;
             }
             &:hover:before {
               content: '';
@@ -186,31 +190,35 @@
             }
           }
           &:hover {
-            z-index: 2;
+            border-color: transparent;
+            z-index: 5000;
           }
         }
       }
     }
     dictionary {
-      background-color: rgba(240, 244, 247, .7);
+      background-color: rgb(36, 40, 49);
       position: absolute;
       display: inline-block;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       color: rgb(0, 0, 0);
       width: -webkit-calc(~'30% - 5px');
       height: -webkit-calc(~'100% - 5px');
       padding: 2.5px;
       -webkit-app-region: drag;
       search {
+        color: rgb(231, 232, 234);
         cursor: pointer;
-        background-color: rgb(255, 255, 255);
+        background-color: rgb(101, 112, 125);
         position: absolute;
         display: -webkit-box;
         width: -webkit-calc(~'100% - 20px');
         height: -webkit-calc(~'(15% * 0.7) - 20px');
         margin: 10px;
         margin-top: 2.5px;
-        top: -webkit-calc(~'20px + 10px');
+        margin-bottom: 2.5px;
         left: 0px;
+        border-radius: 3px;
         -webkit-box-align: center;
         -webkit-app-region: no-drag;
       }
@@ -221,7 +229,7 @@
         height: -webkit-calc(~'(15% * 0.7) - 20px');
         margin: 10px;
         margin-top: 2.5px;
-        top: -webkit-calc(~'20px + 10px');
+        margin-bottom: 2.5px;
         left: -webkit-calc(~'100% - 40px');
         -webkit-app-region: no-drag;
         &::after {
@@ -241,7 +249,7 @@
         position: absolute;
         display: block;
         width: -webkit-calc(~'100% - 5px');
-        height: -webkit-calc(~'85% - 5px');
+        height: -webkit-calc(~'92% - 5px');
         margin: 2.5px;
         bottom: 0px;
         left: 0px;
@@ -252,6 +260,7 @@
           width: 100%;
           -webkit-app-region: no-drag;
           text {
+            color: rgb(170, 170, 170);
             cursor: pointer;
             position: relative;
             display: inherit;
@@ -269,7 +278,7 @@
             margin: 2.5px;
             -webkit-app-region: no-drag;
             &::after {
-              color: red;
+              color: rgb(100, 57, 67);
               position: absolute;
               display: -webkit-box;
               width: 100%;
@@ -278,12 +287,22 @@
               -webkit-box-align: center;
             }
           }
+          &:hover {
+            background-color: rgb(59, 69, 83);
+            text {
+              color: rgb(214, 214, 214);
+            }
+            delete {
+              border-radius: 1px;
+            }
+          }
         }
       }
     } 
     &[capitalize='true'] {
       & keyboard menu capitalize {
-        color: green;
+        color: rgb(244, 246, 244);
+        background-color: rgb(101, 144, 102);
       }
       & keyboard[capitalize='true'],
       & dictionary[capitalize='true'] {
@@ -295,7 +314,8 @@
     }
     &[capitalize='false'] {
       & keyboard menu capitalize {
-        color: red;
+        color: rgb(182, 163, 163);
+        background-color: rgb(100, 57, 67);
       }
     }
   }

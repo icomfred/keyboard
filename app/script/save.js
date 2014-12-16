@@ -24,7 +24,7 @@ var Save = {
     if (Save.alpha && Save.dict)
       Save.gui.end(true);
   },
-  'close': function (end) {
+  'init': function (end) {
     var f_alpha = Keyboard.root + Conf.lang.locale + '/' + Conf.alphabet.file;
     var f_dict  = Dictionary.root + Conf.lang.locale + '.json';
     var d_alpha = JSON.stringify(Keyboard.json, null, 2, '\t');

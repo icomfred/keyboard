@@ -67,6 +67,7 @@ var Lang = {
     while (node.firstChild)
       node.removeChild(node.firstChild);
     Lang.put(node);
+    node.addEventListener('change', Save.init);
     node.addEventListener('change', Lang.event);
   }
 };
