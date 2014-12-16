@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 @charset 'UTF-8';
-
+/*rgba(255, 200, 255, 0.5)*/
 @circles: 1, 2,
           2, 5,
           5, 16,
@@ -33,16 +33,13 @@
   }
   program {
     keyboard {
-      background-color: rgb(44, 48, 60);
+      background-color: rgb(118, 84, 144);
       box-shadow: 7px 0px 35px rgba(0, 0, 0, .45);
       position: relative;
       display: inline-block;
       overflow-wrap: break-word;
       width: -webkit-calc(~'70% - 5px');
       height: 100%;
-      border-right-style: solid;
-      border-right-color: rgb(0, 0, 0);
-      border-right-width: 2px;
       -webkit-app-region: drag;
       menu {
         position: relative;
@@ -53,43 +50,46 @@
         padding: 0px;
         -webkit-app-region: drag;
         select {
-          color: rgb(231, 232, 234);
           cursor: pointer;
-          background-color: rgb(101, 112, 125);
           position: relative;
           font-weight: bold;
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
           display: inline-block;
-          height: -webkit-calc(~'100% - 5px');
+          height: -webkit-calc(~'100% - 7px');
           margin: 2.5px;
-          border: none;
-          border-radius: 3px;
+          -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          border-style: solid;
+          border-color: silver;
+          border-width: 1px;
+          border-radius: 2px;
           -webkit-app-region: no-drag;
           &#lang {
-            width: -webkit-calc(~'26% - 5px');
+            width: -webkit-calc(~'26% - 7px');
           }
           &#alphabet {
-            width: -webkit-calc(~'29.4% - 5px');
+            width: -webkit-calc(~'29.4% - 7px');
           }
           &#mode {
-            width: -webkit-calc(~'31.3% - 5px');
+            width: -webkit-calc(~'31.6% - 7px');
           }
         }
         capitalize {
           cursor: pointer;
-          background-color: rgb(255, 255, 255);
           position: absolute;
           font-weight: bold;
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
           display: inline-block;
-          width: -webkit-calc(~'13.3% - 5px');
-          height: -webkit-calc(~'100% - 5px');
+          width: -webkit-calc(~'13% - 7px');
+          height: -webkit-calc(~'100% - 9px');
           margin: 2.5px;
-          border: none;
-          border-radius: 3px;
+          -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          border-style: solid;
+          border-color: silver;
+          border-width: 1px;
+          border-radius: 2px;
           -webkit-app-region: no-drag;
           &:after {
-            content: 'a\2192 A';
+            content: 'Aa';
             width: 100%;
             position: absolute;
             text-align: center;
@@ -123,7 +123,7 @@
             @to: extract(@circles, @iterator + 1);
             @difference: @to - @from;
             &:nth-child(n+@{from}) {
-              border-color: rgb(57, 64, 87);
+              border-color: rgba(255, 200, 255, 0.5);
               z-index: @to;
             }
             &:nth-child(n+@{from}):nth-child(-n+@{to}) {
@@ -151,8 +151,8 @@
             .letter((@iterator + 2), (@_size + 2));
           }.letter();
           text {
-            color: rgb(170, 170, 170);
-            background-color: rgb(225, 240, 188);
+            color: rgb(255, 255, 255);
+            background-color: rgba(0, 0, 0, 0.8);
             cursor: pointer;
             position: absolute;
             pointer-events: all;
@@ -197,7 +197,10 @@
       }
     }
     dictionary {
-      background-color: rgb(36, 40, 49);
+      background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0,
+                  rgba(0, 0, 0, 0.2) 12px,
+                  rgba(0, 0, 0, 0) 20px),
+                  #452e5c;
       position: absolute;
       display: inline-block;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -207,9 +210,8 @@
       padding: 2.5px;
       -webkit-app-region: drag;
       search {
-        color: rgb(231, 232, 234);
         cursor: pointer;
-        background-color: rgb(101, 112, 125);
+        background-color: rgb(255, 255, 255);
         position: absolute;
         display: -webkit-box;
         width: -webkit-calc(~'100% - 20px');
@@ -218,6 +220,7 @@
         margin-top: 2.5px;
         margin-bottom: 2.5px;
         left: 0px;
+        top: 0px;
         border-radius: 3px;
         -webkit-box-align: center;
         -webkit-app-region: no-drag;
@@ -260,7 +263,7 @@
           width: 100%;
           -webkit-app-region: no-drag;
           text {
-            color: rgb(170, 170, 170);
+            color: rgb(255, 255, 255);
             cursor: pointer;
             position: relative;
             display: inherit;
@@ -278,13 +281,16 @@
             margin: 2.5px;
             -webkit-app-region: no-drag;
             &::after {
-              color: rgb(100, 57, 67);
+              color: rgb(118, 84, 144);
               position: absolute;
               display: -webkit-box;
               width: 100%;
               height: 100%;
               content: '\2715';
               -webkit-box-align: center;
+            }
+            &:hover::after {
+              color: red;
             }
           }
           &:hover {
@@ -302,7 +308,7 @@
     &[capitalize='true'] {
       & keyboard menu capitalize {
         color: rgb(244, 246, 244);
-        background-color: rgb(101, 144, 102);
+        background-color: rgb(95, 146, 97);
       }
       & keyboard[capitalize='true'],
       & dictionary[capitalize='true'] {
@@ -314,8 +320,8 @@
     }
     &[capitalize='false'] {
       & keyboard menu capitalize {
-        color: rgb(182, 163, 163);
-        background-color: rgb(100, 57, 67);
+        color: rgb(244, 246, 244);
+        background-color: rgb(170, 75, 75);
       }
     }
   }
